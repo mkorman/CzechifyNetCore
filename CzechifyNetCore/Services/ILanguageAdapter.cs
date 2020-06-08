@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CzechifyNetCore.Services
+﻿namespace CzechifyNetCore.Services
 {
     public interface ILanguageAdapter
     {
+        string Title { get; }
         string Adapt(string text);
     }
 }

@@ -8,12 +8,11 @@ namespace CzechifyNetCore.Services
 {
     public class CzechLanguageAdapter : ILanguageAdapter
     {
+        public string Title => "Czechify!";
+
         public string Adapt(string text)
         {
-            var sb = new StringBuilder();
-
             var consonants = text.Where(c => !IsVowel(c)).ToArray();
-
             return new string(consonants).Trim();
         }
 

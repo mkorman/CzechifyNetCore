@@ -6,12 +6,17 @@ namespace CzechifyNetCoreTests
 {
     public class CzechLanguageAdapterTests
     {
-
         private readonly ILanguageAdapter _adapter;
 
         public CzechLanguageAdapterTests()
         {
             _adapter = new CzechLanguageAdapter();
+        }
+
+        [Fact]
+        public void WhenIUseCzechAdapter_ThenISeeTheRightTitle()
+        {
+            Assert.Equal("Czechify!", _adapter.Title);
         }
 
         [Theory]

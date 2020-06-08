@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CzechifyNetCore.Models;
+using CzechifyNetCore.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using CzechifyNetCore.Models;
-using CzechifyNetCore.Services;
+using System.Diagnostics;
 
 namespace CzechifyNetCore.Controllers
 {
@@ -23,7 +19,7 @@ namespace CzechifyNetCore.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Title = "Czechify!";
+            ViewBag.Title = _adapter.Title;
             return View();
         }
 
