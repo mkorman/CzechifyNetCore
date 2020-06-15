@@ -1,16 +1,15 @@
 ﻿<h2>@ViewBag.Title</h2>
-<p>Type your text, and get the translation in Czech below</p>
+<p>Type your text, and get the translation below</p>
 
 <textarea id="originalText" class="textbox input">
-
 </textarea>
 <br/>
-<input type="button" id="submit" value="Czechify!"/>
+<input type="button" id="submit" value="@ViewBag.Title"/>
 <br/>
-<textarea id="czechText" class="textbox output">
-
+<textarea id="processedText" class="textbox output">
 </textarea>
 <p id="disclaimer">Alternatively, you can try <a href="http://translate.google.com">this</a></p>
+
 @section scripts
 {
     <script type="text/javascript">
@@ -21,12 +20,12 @@
         });
 
         function submitText() {
-            $("#czechText").val('');
+            $("#processedText").val('');
             $.ajax({
                 url: '/home/czechify?text=' + encodeURIComponent($("#originalText").val()),
                 type: "GET"
             }).done(function (data) {
-                $("#czechText").val(data);
+                $("#processedText").val(data);
                 $("#disclaimer").show();
                 $("#disclaimer").css('visibility', 'visible');
             }).error(function (data) {

@@ -61,11 +61,39 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  color: #232323;
+  background-color: #ccc;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+textarea {
+  width: 80%;
+  height: 150px;
+  padding: 5px;
+  margin: 10px;
+  font-size: 16px;
+  font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+  color: #232323;
+  background-color: #fff;
+  resize: none;
+}
+
+input[type="button"] {
+  border: solid 1px black;
+  padding: 8px;
+  margin: 10px;
+  background-color: #36A19B;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+#disclaimer {
+  visibility: hidden;
 }
