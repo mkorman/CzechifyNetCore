@@ -16,9 +16,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    - uses: azure/login@v1.1
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - uses: azure/docker-login@v1
+      with:
+        login-server: testimages.azurecr.io
+        username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
+        password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
     
     - run: |
-        az webapp list --query "[?state=='Running']"
+        docker tag czechify testimages.azurecr.io/czechify:${{ github.sha }}
+        docker push testimages.azurecr.io/czechify:${{ github.sha }}
+
+    - name: 'Deploy to Azure Container Instances'
+      uses: 'azure/aci-deploy@v1'
+      with:
+        resource-group: testImages
+        dns-name-label: czechify
+        image: testimages.azurecr.io/czechify:${{ github.sha }}
+        registry-username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
+        registry-password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+        name: czechify
+        location: 'west eu'
+
