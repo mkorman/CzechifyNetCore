@@ -38,5 +38,5 @@ jobs:
         registry-username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
         registry-password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
         name: czechify
-        location: 'west eu'
+        location: 'westeurope'
 
