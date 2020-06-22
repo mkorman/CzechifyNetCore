@@ -12,12 +12,14 @@ jobs:
     steps:
     - name: 'Checkout code'
       uses: actions/checkout@v2
+
     - name: 'Login via Azure CLI'
       uses: azure/login@v1.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: azure/docker-login@v1
+    - name: 'Login to Azure Container Registry'
+      uses: azure/docker-login@v1
       with:
         login-server: testimages.azurecr.io
         username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
@@ -26,10 +28,7 @@ jobs:
     - run: |
         docker build . -t testimages.azurecr.io/czechify:latest
         docker push testimages.azurecr.io/czechify:latest
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
+
     - name: 'Deploy to Azure Container Instances'
       uses: 'azure/aci-deploy@v1'
       with:
