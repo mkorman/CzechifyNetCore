@@ -28,9 +28,8 @@ jobs:
         password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
     
     - run: |
-        docker build -t czechify .
-        docker tag czechify testimages.azurecr.io/czechify:${{ github.sha }}
-        docker push testimages.azurecr.io/czechify:${{ github.sha }}
+        docker build . -t testimages.azurecr.io/czechify:latest
+        docker push testimages.azurecr.io/czechify:latest
 
     - name: 'Deploy to Azure Container Instances'
       uses: 'azure/aci-deploy@v1'
