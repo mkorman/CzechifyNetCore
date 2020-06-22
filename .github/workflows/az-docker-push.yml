@@ -35,6 +35,7 @@ jobs:
         resource-group: Test
         dns-name-label: czechify
         image: testimages.azurecr.io/czechify:latest
+        registry-login-server: testimages.azurecr.io
         registry-username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
         registry-password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
         name: czechify
