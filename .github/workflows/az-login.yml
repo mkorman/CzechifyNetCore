@@ -28,6 +28,7 @@ jobs:
         password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
     
     - run: |
+        docker build -t czechify .
         docker tag czechify testimages.azurecr.io/czechify:${{ github.sha }}
         docker push testimages.azurecr.io/czechify:${{ github.sha }}
 
