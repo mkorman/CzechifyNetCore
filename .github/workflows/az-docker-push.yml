@@ -1,4 +1,4 @@
-name: Docker Build And Publish to Azure Instances
+name: Docker Build And Publish
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
         password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
     
     - run: |
-        docker build .. -t testimages.azurecr.io/czechify:latest
+        docker build . -t testimages.azurecr.io/czechify:latest
         docker push testimages.azurecr.io/czechify:latest
   deploy:
     runs-on: ubuntu-latest
