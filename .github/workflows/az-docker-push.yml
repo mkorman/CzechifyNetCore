@@ -33,7 +33,7 @@ jobs:
       uses: 'azure/aci-deploy@v1'
       with:
         resource-group: Test
-        dns-name-label: czechify
+        dns-name-label: czechify.westeurope.azurecontainer.io
         image: testimages.azurecr.io/czechify:latest
         registry-username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
         registry-password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
