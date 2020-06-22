@@ -34,7 +34,7 @@ jobs:
       with:
         resource-group: testImages
         dns-name-label: czechify
-        image: testimages.azurecr.io/czechify:${{ github.sha }}
+        image: testimages.azurecr.io/czechify:latest
         registry-username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
         registry-password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
         name: czechify
