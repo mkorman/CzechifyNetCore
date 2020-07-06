@@ -30,7 +30,11 @@ namespace CzechifyNetCore.Controllers
 
         public string Czechify(string text)
         {
-            return _adapter.Adapt(text);
+            var outputText = _adapter.Adapt(text);
+
+            _logger.LogInformation($"Adapted text: {text} -> {outputText}");
+
+            return outputText;
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
