@@ -50,7 +50,7 @@ namespace CzechifyNetCore
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-            loggerFactory.AddFile("app.log");
+            loggerFactory.AddFile("/logs/app.log");
         }
     }
 }
