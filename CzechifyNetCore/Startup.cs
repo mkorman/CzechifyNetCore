@@ -1,3 +1,5 @@
+using System;
+using CzechifyNetCore.Models;
 using CzechifyNetCore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,6 +24,17 @@ namespace CzechifyNetCore
         {
             services.AddControllersWithViews();
             services.AddTransient<ILanguageAdapter, CzechLanguageAdapter>();
+            var dbConfig = Configuration.Get<DbConfiguration>();
+            if (dbConfig.UseExternalDb)
+            {
+                Console.WriteLine($"Connecting to Mongo DB at {dbConfig.ConnectionString}");
+                services.AddTransient(typeof(IHistoryService), service => new MongoDbHistoryService(dbConfig));
+            }
+            else
+            {
+                Console.WriteLine("Using internal history service");
+                services.AddTransient(typeof(IHistoryService), service => new InMemoryHistoryService());
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

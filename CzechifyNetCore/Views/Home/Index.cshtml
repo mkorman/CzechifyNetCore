@@ -8,6 +8,8 @@
 <br/>
 <textarea id="processedText" class="textbox output">
 </textarea>
+<h6>Recent searches:</h6>
+<ul id="recent"></ul>
 <p id="disclaimer">Alternatively, you can try <a href="http://translate.google.com">this</a></p>
 
 @section scripts
@@ -16,20 +18,37 @@
         $(function () {
             $("#submit").click(submitText);
             $("#originalText").focus();
+            updateRecent();
         });
+
+        function updateRecent() {
+            $.ajax({
+                url: '/recent',
+                type: 'GET'
+            }).done(function (data) {
+                $("#recent").empty();
+                $.each(data, function(index, entry) {
+                    $("#recent").append("<li>" + entry + "</li>");
+                });
+            }).fail(function () {
+                alert("Error retrieving history");
+            });
+        }
 
         function submitText() {
             $("#processedText").val('');
             $.ajax({
                 url: '/home/czechify?text=' + encodeURIComponent($("#originalText").val()),
-                type: "GET"
+                type: 'GET'
             }).done(function (data) {
                 $("#processedText").val(data);
                 $("#disclaimer").show();
                 $("#disclaimer").css('visibility', 'visible');
-            }).error(function (data) {
-                alert("Error translating your text. Please try again later");
+            }).fail(function () {
+                alert("Error translating text");
             });
+
+            updateRecent();
         };
     </script>
 }

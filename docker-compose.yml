@@ -6,3 +6,8 @@ services:
       - "8080:80"
     volumes:
       - //c/work/tmp://logs
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
