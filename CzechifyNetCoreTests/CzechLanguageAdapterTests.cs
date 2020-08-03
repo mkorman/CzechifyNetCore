@@ -29,5 +29,15 @@ namespace CzechifyNetCoreTests
 
             Assert.Equal(expectedOutput, output, StringComparer.InvariantCultureIgnoreCase);
         }
+
+        [Theory]
+        [InlineData("cat", "čt")]
+        [InlineData("Cat", "Ct")] // Uppercase 'C' is not adapted
+        public void GivenALanguageWithVowels_WhenIAdapt_ThenDiacriticsAreAdapted(string input, string expectedOutput)
+        {
+            var output = _adapter.Adapt(input);
+
+            Assert.Equal(expectedOutput, output, StringComparer.InvariantCultureIgnoreCase);
+        }
     }
 }

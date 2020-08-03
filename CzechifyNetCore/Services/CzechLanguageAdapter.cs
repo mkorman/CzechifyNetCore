@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.WebEncoders.Testing;
 
 namespace CzechifyNetCore.Services
 {
@@ -13,7 +14,9 @@ namespace CzechifyNetCore.Services
         public string Adapt(string text)
         {
             var consonants = text.Where(c => !IsVowel(c)).ToArray();
-            return new string(consonants).Trim();
+            var textWithoutVowels = new string(consonants).Trim();
+            var funnies = textWithoutVowels.Replace('c', 'č');
+            return funnies;
         }
 
         protected bool IsVowel(char c)
