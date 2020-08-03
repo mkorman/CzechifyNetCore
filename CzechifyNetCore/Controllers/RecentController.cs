@@ -1,5 +1,4 @@
-﻿using System;
-using CzechifyNetCore.Services;
+﻿using CzechifyNetCore.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
